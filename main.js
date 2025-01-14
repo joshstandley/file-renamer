@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
 
 let mainWindow;
@@ -8,13 +8,21 @@ function createMainWindow() {
     width: 800,
     height: 600,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'), // Placeholder for future enhancements
-      contextIsolation: true, // Security best practice
+      preload: path.join(__dirname, 'preload.js'),
+      contextIsolation: true,
     },
   });
 
   mainWindow.loadFile(path.join(__dirname, 'src/index.html'));
 }
+
+ipcMain.handle('openFileDialog', async () => {
+  const result = await dialog.showOpenDialog(mainWindow, {
+    properties: ['openFile', 'multiSelections'],
+  });
+
+  return result;
+});
 
 app.whenReady().then(createMainWindow);
 
