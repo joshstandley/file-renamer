@@ -1,0 +1,16 @@
+{
+  "name": "file-renamer",
+  "version": "1.0.0",
+  "description": "A desktop application for renaming files.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^33.3.1"
+  }
+}
